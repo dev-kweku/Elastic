@@ -1,5 +1,3 @@
-    // scripts/seed.ts — Load products.json into PostgreSQL
-    // This is the "indexing" step — equivalent to ES bulk index API
 
     import { PrismaClient } from '../generated/prisma/client'
     import { PrismaPg } from '@prisma/adapter-pg'
