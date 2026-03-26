@@ -1,4 +1,3 @@
-    // src/types/index.ts — Shared types across the search engine
 
     export interface Product {
     id: string
@@ -21,25 +20,23 @@
     updated_at: Date
     }
 
-    // ── Search request params (mirrors ES query DSL structure) ─────────────────
 
     export type SortField = 'relevance' | 'price_asc' | 'price_desc' | 'rating' | 'newest' | 'popularity'
 
     export interface SearchParams {
-    q?: string               // full-text query — like ES "query.match"
-    category?: string        // term filter — like ES "term" filter
-    brand?: string           // term filter
-    min_price?: number       // range filter — like ES "range" filter
-    max_price?: number       // range filter
-    in_stock?: boolean       // term filter
-    min_rating?: number      // range filter
-    tags?: string[]          // terms filter — like ES "terms" filter
-    sort?: SortField         // sort — like ES "sort"
-    page?: number            // pagination
-    limit?: number           // page size — like ES "size"
+    q?: string               
+    category?: string        
+    brand?: string           
+    min_price?: number       
+    max_price?: number       
+    in_stock?: boolean       
+    min_rating?: number     
+    tags?: string[]          
+    sort?: SortField        
+    page?: number            
+    limit?: number           
     }
 
-    // ── Search response (mirrors ES response envelope) ────────────────────────
 
     export interface SearchHit {
     id: string
@@ -57,26 +54,25 @@
     review_count: number
     tags: string[]
     image_url: string | null
-    score: number | null     // ts_rank score — like ES "_score"
+    score: number | null    
     created_at: Date
     updated_at: Date
     }
 
     export interface SearchResponse {
     hits: SearchHit[]
-    total: number            // like ES "hits.total.value"
+    total: number           
     page: number
     limit: number
     total_pages: number
-    took_ms: number          // query time — like ES "took"
-    query: string | null     // echoed back for debugging
+    took_ms: number          
+    query: string | null    
     }
 
-    // ── Facets (mirrors ES aggregations) ─────────────────────────────────────
 
     export interface FacetBucket {
     value: string
-    count: number            // like ES "doc_count"
+    count: number           
     }
 
     export interface PriceBucket {
@@ -87,17 +83,17 @@
     }
 
     export interface FacetsResponse {
-    categories: FacetBucket[]    // like ES "terms" aggregation on category
-    brands: FacetBucket[]        // like ES "terms" aggregation on brand
-    price_ranges: PriceBucket[]  // like ES "range" aggregation on price
-    tags: FacetBucket[]          // like ES "terms" aggregation on tags
+    categories: FacetBucket[]     
+    brands: FacetBucket[]        
+    price_ranges: PriceBucket[]  
+    tags: FacetBucket[]          
     rating_distribution: FacetBucket[]
     total_products: number
     in_stock_count: number
     took_ms: number
     }
 
-    // ── Autocomplete (mirrors ES "completion suggester") ─────────────────────
+
 
     export interface SuggestionItem {
     text: string
@@ -111,10 +107,10 @@
     took_ms: number
     }
 
-    // ── Health check ──────────────────────────────────────────────────────────
+    
 
     export interface HealthResponse {
-    status: 'green' | 'yellow' | 'red'  // mirrors ES cluster health colors
+    status: 'green' | 'yellow' | 'red'  
     db_connected: boolean
     product_count: number
     index_size?: string
@@ -122,7 +118,7 @@
     version: string
     }
 
-    // ── Error response ────────────────────────────────────────────────────────
+    
 
     export interface ErrorResponse {
     error: string
