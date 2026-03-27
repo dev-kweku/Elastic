@@ -10,35 +10,13 @@
     getIndexStats,
     } from '../services/search.service'
     import prisma from '../db'
+    import { health,stats } from '../controllers'
 
-    const router = new Router()
+    const router = new Router({ prefix: '/api' })
 
-    router.get('/health', async (ctx: Context) => {
-    try {
-        const stats = await getIndexStats()
-        ctx.body = {
-        status: 'green',
-        db_connected: true,
-        product_count: stats.total_documents,
-        index_size: stats.index_size_human,
-        uptime_seconds: Math.floor(process.uptime()),
-        version: '1.0.0',
-        }
-    } catch (err) {
-        ctx.status = 503
-        ctx.body = {
-        status: 'red',
-        db_connected: false,
-        uptime_seconds: Math.floor(process.uptime()),
-        version: '1.0.0',
-        }
-    }
-    })
+    router.get('/health',health)
 
-    router.get('/stats', async (ctx: Context) => {
-    const stats = await getIndexStats()
-    ctx.body = { index: 'products', ...stats }
-    })
+    router.get('/stats',stats)
 
     router.get('/search', validate(searchSchema, 'query'), async (ctx: Context) => {
     const results = await searchProducts(ctx.state.validated)

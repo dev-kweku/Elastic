@@ -29,6 +29,9 @@ importers:
       koa-body:
         specifier: ^7.0.1
         version: 7.0.1
+      koa-bodyparser:
+        specifier: ^4.4.1
+        version: 4.4.1
       koa-compress:
         specifier: ^5.2.1
         version: 5.2.1
@@ -54,6 +57,9 @@ importers:
       '@types/koa':
         specifier: ^3.0.2
         version: 3.0.2
+      '@types/koa-bodyparser':
+        specifier: ^4.3.13
+        version: 4.3.13
       '@types/koa-compress':
         specifier: ^4.0.7
         version: 4.0.7
@@ -607,6 +613,9 @@ packages:
   '@types/keygrip@1.0.6':
     resolution: {integrity: sha512-lZuNAY9xeJt7Bx4t4dx0rYCDqGPW8RXhQZK1td7d4H6E9zYbLoOtjBvfwdTKpsyxQI/2jv+armjX/RW+ZNpXOQ==}
 
+  '@types/koa-bodyparser@4.3.13':
+    resolution: {integrity: sha512-yW9afsDnV1ymnhMBfAlzsKZ45sYnvIlTRS+eF5MUZOQ8ePIIj3ajwi+9b4a0vdyYvh6uJKYibU8R1zrUIpCmCA==}
+
   '@types/koa-compose@3.2.9':
     resolution: {integrity: sha512-BroAZ9FTvPiCy0Pi8tjD1OfJ7bgU1gQf0eR6e1Vm+JJATy9eKOG3hQMFtMciMawiSOVnLMdmUOC46s7HBhSTsA==}
 
@@ -1020,6 +1029,9 @@ packages:
   cookies@0.9.1:
     resolution: {integrity: sha512-TG2hpqe4ELx54QER/S3HQ9SRVnQnGBtKUz5bLQWtYAQ+o6GpgMs6sYUvaiJjVxb+UXwhRhAEP3m7LbsIZ77Hmw==}
     engines: {node: '>= 0.8'}
+
+  copy-to@2.0.1:
+    resolution: {integrity: sha512-3DdaFaU/Zf1AnpLiFDeNCD4TOWe3Zl2RZaTzUvWiIk5ERzcCodOE20Vqq4fzCbNoHURFHT4/us/Lfq+S2zyY4w==}
 
   create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -1613,6 +1625,10 @@ packages:
 
   koa-body@7.0.1:
     resolution: {integrity: sha512-fSCZyN7Mhf/gijDeoOr20H4+g29znYhqoNuCX5X1kPQkUiRYIG/lku0CaCx0BBuoZ4pDAjsbJJfiECtJspKP/Q==}
+
+  koa-bodyparser@4.4.1:
+    resolution: {integrity: sha512-kBH3IYPMb+iAXnrxIhXnW+gXV8OTzCu8VPDqvcDHW9SQrbkHmqPQtiZwrltNmSq6/lpipHnT7k7PsjlVD7kK0w==}
+    engines: {node: '>=8.0.0'}
 
   koa-compose@4.1.0:
     resolution: {integrity: sha512-8ODW8TrDuMYvXRwra/Kh7/rJo9BtOfPc6qO8eAfC80CnCvSjSl0bkRM24X6/XBBEyj0v1nRUQ1LyOy3dbqOWXw==}
@@ -3171,6 +3187,10 @@ snapshots:
 
   '@types/keygrip@1.0.6': {}
 
+  '@types/koa-bodyparser@4.3.13':
+    dependencies:
+      '@types/koa': 3.0.2
+
   '@types/koa-compose@3.2.9':
     dependencies:
       '@types/koa': 3.0.2
@@ -3579,6 +3599,8 @@ snapshots:
     dependencies:
       depd: 2.0.0
       keygrip: 1.1.0
+
+  copy-to@2.0.1: {}
 
   create-require@1.1.1: {}
 
@@ -4322,6 +4344,12 @@ snapshots:
       formidable: 3.5.4
       type-fest: 5.5.0
       zod: 4.3.6
+
+  koa-bodyparser@4.4.1:
+    dependencies:
+      co-body: 6.2.0
+      copy-to: 2.0.1
+      type-is: 1.6.18
 
   koa-compose@4.1.0: {}
 
