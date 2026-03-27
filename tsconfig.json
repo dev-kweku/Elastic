@@ -12,8 +12,9 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "types": ["jest", "node"]
   },
-  "include": ["scripts/**/*", "src/**/*"],
-  "exclude": ["node_modules", "dist", "tests", "src/generated"]
+  "include": ["scripts/**/*", "src/**/*", "tests/**/*"],
+  "exclude": ["node_modules", "dist", "src/generated"]
 }
