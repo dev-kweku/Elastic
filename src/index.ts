@@ -5,6 +5,9 @@ import helmet from 'koa-helmet'
 import compress from 'koa-compress'
 import {koaBody} from 'koa-body'
 import router from './routes'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 import { errorHandler } from './middleware/error'
 
