@@ -1,4 +1,4 @@
-// src/app/page.tsx — Home page
+
 
 import Link from 'next/link'
 import { getStats, getFacets } from '@/lib/api'

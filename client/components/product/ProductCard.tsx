@@ -1,4 +1,4 @@
-    // src/components/product/ProductCard.tsx
+
 
     import Link from 'next/link'
     import type { SearchHit } from '@/types'

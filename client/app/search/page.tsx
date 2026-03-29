@@ -1,4 +1,4 @@
-    // src/app/search/page.tsx — Search results page
+
 
     import { Suspense } from 'react'
     import { searchProducts, getFacets } from '@/lib/api'

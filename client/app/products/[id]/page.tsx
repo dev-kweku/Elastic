@@ -1,4 +1,4 @@
-    // src/app/products/[id]/page.tsx — Product detail page
+
 
     import { notFound } from 'next/navigation'
     import Link from 'next/link'
