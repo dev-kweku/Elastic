@@ -8,7 +8,7 @@
     Product,
     } from '@/types'
 
-    const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+    const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4001'
 
     async function apiFetch<T>(path: string, params?: Record<string, string | number | boolean | string[] | undefined>): Promise<T> {
     const url = new URL(`${BASE_URL}/api${path}`)

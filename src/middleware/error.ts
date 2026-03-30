@@ -3,6 +3,7 @@ import { Context,Next } from "koa";
 
 export async function errorHandler(ctx:Context,next:Next){
     try{
+        return next()
 
     }catch(err:unknown){
         const error=err as Error & {status?:number;statusCode?:number}
