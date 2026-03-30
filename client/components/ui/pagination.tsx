@@ -4,6 +4,15 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowLeft01Icon, ArrowRight01Icon, MoreHorizontalCircle01Icon } from "@hugeicons/core-free-icons"
+import { useRouter } from "next/navigation"
+import type { FC } from "react"
+interface SearchPaginationProps{
+  currentPage:number
+  totalPages:number 
+  params:Record<string, string|undefined>
+}
+
+
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -117,6 +126,95 @@ function PaginationEllipsis({
       <span className="sr-only">More pages</span>
     </span>
   )
+}
+
+export const SearchPagination: FC<SearchPaginationProps> = ({
+  currentPage,
+  totalPages,
+  params,
+}) => {
+  const router = useRouter()
+ 
+  function buildHref(page: number): string {
+    const newParams = new URLSearchParams()
+    Object.entries(params).forEach(([k, v]) => {
+      if (v && k !== 'page') newParams.set(k, v)
+    })
+    if (page > 1) newParams.set('page', String(page))
+    return `/search?${newParams.toString()}`
+  }
+ 
+  function goToPage(page: number) {
+    router.push(buildHref(page))
+  }
+ 
+  const pages = getPageNumbers(currentPage, totalPages)
+ 
+  return (
+    <Pagination>
+      <PaginationContent>
+        {/* Previous */}
+        <PaginationItem>
+          <PaginationPrevious
+            href={buildHref(currentPage - 1)}
+            onClick={(e) => {
+              e.preventDefault()
+              if (currentPage > 1) goToPage(currentPage - 1)
+            }}
+            aria-disabled={currentPage <= 1}
+            className={currentPage <= 1 ? 'pointer-events-none opacity-40' : ''}
+          />
+        </PaginationItem>
+ 
+        {/* Page numbers */}
+        {pages.map((page, i) =>
+          page === '...' ? (
+            <PaginationItem key={`ellipsis-${i}`}>
+              <PaginationEllipsis />
+            </PaginationItem>
+          ) : (
+            <PaginationItem key={page}>
+              <PaginationLink
+                href={buildHref(Number(page))}
+                isActive={Number(page) === currentPage}
+                onClick={(e) => {
+                  e.preventDefault()
+                  goToPage(Number(page))
+                }}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          )
+        )}
+ 
+        {/* Next */}
+        <PaginationItem>
+          <PaginationNext
+            href={buildHref(currentPage + 1)}
+            onClick={(e) => {
+              e.preventDefault()
+              if (currentPage < totalPages) goToPage(currentPage + 1)
+            }}
+            aria-disabled={currentPage >= totalPages}
+            className={currentPage >= totalPages ? 'pointer-events-none opacity-40' : ''}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  )
+}
+
+function getPageNumbers(current: number, total: number): (number | '...')[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1)
+  const pages: (number | '...')[] = [1]
+  if (current > 3) pages.push('...')
+  for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+    pages.push(i)
+  }
+  if (current < total - 2) pages.push('...')
+  pages.push(total)
+  return pages
 }
 
 export {

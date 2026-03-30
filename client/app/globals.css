@@ -128,3 +128,35 @@
     @apply font-sans;
   }
 }
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2
+            bg-primary text-primary-foreground text-sm font-medium
+            rounded-lg hover:opacity-90 active:scale-95
+            transition-all duration-150
+            disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2
+            bg-secondary text-secondary-foreground text-sm font-medium
+            rounded-lg border border-border hover:bg-accent
+            active:scale-95 transition-all duration-150;
+  }
+
+  .input-base {
+    @apply w-full px-3 py-2 text-sm bg-background text-foreground
+            border border-input rounded-lg outline-none
+            focus:ring-2 focus:ring-ring focus:border-transparent
+            transition-all placeholder:text-muted-foreground;
+  }
+
+  .card {
+    @apply bg-card text-card-foreground border border-border rounded-xl overflow-hidden;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full;
+  }
+}
